@@ -1,3 +1,6 @@
+// requiring dotenv 
+require('dotenv').config();
+
 // imported modules go here!
 const express = require('express');
 const cors = require('cors');
@@ -20,7 +23,10 @@ server.use('/api/posts', postRouter);
 
 // setting basic endpoint
 server.get('/', (req, res) => {
-  res.send(`<h2>Let's write some middleware!</h2>`)
+  const messageOfTheDay = process.env.MOTD || "Come on and slam and welcome to the jam!"
+  res.send(`
+  <h1>${messageOfTheDay}</h1>
+  <h2>Let's write some middleware!</h2>`)
 });
 
 //custom middleware
